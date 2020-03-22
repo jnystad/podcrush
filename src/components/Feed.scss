@@ -5,6 +5,7 @@
   padding: 10px 20px;
   background: transparentize($color: $themeColor10, $amount: 0.5);
   height: 120px;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {

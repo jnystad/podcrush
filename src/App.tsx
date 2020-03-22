@@ -5,6 +5,7 @@ import Player from "./components/Player";
 import FeedPage from "./pages/FeedPage";
 import FrontPage from "./pages/FrontPage";
 import Waves from "./components/Waves";
+import MadeBy from "./components/MadeBy";
 import "./App.scss";
 
 const App: FC = () => {
@@ -24,6 +25,8 @@ const App: FC = () => {
               </svg>
             </Link>
             <Search />
+            <div className="spacer" />
+            <MadeBy />
           </nav>
           <Switch>
             <Route exact path="/podcast/:id">

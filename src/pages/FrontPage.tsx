@@ -39,10 +39,10 @@ const FrontPage: FC = () => {
         {subscriptions.length ? (
           subscriptions.map(id => <FeedLoader key={id} id={id} />)
         ) : (
-          <p>
-            No subscriptions. Use the search field or pick a Podcast below to
-            get started!
-          </p>
+          <>
+            <p>You have no subscriptions!</p>
+            <p>Use the search field or pick a Podcast below to get started.</p>
+          </>
         )}
         <h2>Featured podcasts</h2>
         <FeaturedList />
