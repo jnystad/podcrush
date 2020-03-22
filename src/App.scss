@@ -41,8 +41,22 @@
       line-height: normal;
     }
 
-    h1 {
+    .logo {
+      display: flex;
+      align-items: center;
       padding-bottom: 5px;
+
+      svg {
+        margin-right: 10px;
+      }
+      h1 {
+        display: inline-block;
+        color: #09a;
+
+        .pod {
+          color: #aef;
+        }
+      }
     }
 
     .spacer {
