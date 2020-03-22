@@ -1,0 +1,68 @@
+@import "../colors.scss";
+
+.search {
+  display: inline-block;
+
+  .search-field {
+    position: relative;
+
+    max-width: 500px;
+
+    input {
+      width: 100%;
+    }
+
+    .loading-mask {
+      background: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 80px;
+    }
+  }
+
+  .search-results {
+    position: fixed;
+    top: 60px;
+    left: 0px;
+    z-index: 10;
+    max-height: calc(100vh - 60px - 120px);
+    overflow: auto;
+    max-width: 800px;
+    width: 40%;
+    border-bottom: 1px solid $themeColor;
+    box-shadow: 0 10px 10px rgba(0, 0, 20, 0.2);
+
+    .search-result {
+      height: 120px;
+      padding: 10px;
+      cursor: pointer;
+      background: $themeColor10;
+
+      &:hover {
+        background: lighten($themeColor10, 5%);
+        filter: brightness(110%);
+      }
+
+      img {
+        display: block;
+        float: left;
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        border-radius: 15px;
+      }
+
+      h3 {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      span {
+        display: block;
+        font-size: 14px;
+      }
+    }
+  }
+}

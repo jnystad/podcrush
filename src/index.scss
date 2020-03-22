@@ -1,0 +1,77 @@
+@import "./colors.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: $themeColor10;
+  color: $textColor;
+  font-size: 16px;
+}
+
+input {
+  background: none;
+  color: $textColor;
+  border: 2px solid $borderColor;
+  border-radius: 40px;
+
+  font-size: 18px;
+  padding: 8px 20px;
+
+  outline: none;
+
+  &:active,
+  &:hover {
+    border-color: lighten($borderColor, 20%);
+  }
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+
+  outline: none;
+  border: none;
+  border-radius: 40px;
+
+  background: $themeColor;
+  color: $textColor;
+  padding: 8px 20px;
+  font-size: 18px;
+
+  &:hover {
+    background: lighten($themeColor, 10%);
+  }
+
+  &.icon {
+    position: relative;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a:link,
+a:visited {
+  color: $themeColor80;
+}

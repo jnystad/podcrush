@@ -1,0 +1,107 @@
+@import "../colors.scss";
+@import "./PlayButton.scss";
+
+.player {
+  position: fixed;
+  z-index: 10;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+
+  &.idle {
+    height: 50px;
+  }
+
+  transition: height ease-in-out 200ms;
+
+  background: $themeColor2;
+
+  text-align: center;
+
+  .controls {
+    position: absolute;
+    right: 10%;
+    top: 20px;
+
+    button {
+      width: 30px;
+      height: 30px;
+      padding: 7px;
+      margin: 5px;
+      border: none;
+
+      svg {
+        fill: currentColor;
+      }
+    }
+  }
+
+  button.play {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: -25px auto 0;
+    border-radius: 50px;
+    border: none;
+    background: $themeColor;
+
+    @include play-button;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 0 0 2px;
+  }
+  h3 {
+    font-size: 12px;
+    margin: 0 0 8px;
+    color: $themeColor80;
+  }
+
+  p {
+    margin: 0 0 3px;
+  }
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 10px;
+    height: 80px;
+    border-radius: 10%;
+  }
+
+  .progress {
+    display: block;
+    height: 10px;
+    width: 80%;
+    margin: 1px auto 0;
+    padding: 4px 0 3px;
+
+    &:before {
+      display: block;
+      content: "";
+      border-radius: 10px;
+      background: $themeColor20;
+      height: 3px;
+      margin: 0 0 -3px;
+    }
+
+    cursor: pointer;
+
+    .value {
+      background: $themeColor80;
+      min-width: 2px;
+      height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .timestamps {
+    color: $themeColor60;
+    font-size: 12px;
+  }
+}

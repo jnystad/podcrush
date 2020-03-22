@@ -1,0 +1,14 @@
+$themeColor: #0a0e12;
+$themeColor2: desaturate(lighten($themeColor, 2%), 0%);
+$themeColor5: desaturate(lighten($themeColor, 5%), 2%);
+$themeColor10: desaturate(lighten($themeColor, 10%), 5%);
+$themeColor20: desaturate(lighten($themeColor, 20%), 10%);
+$themeColor30: desaturate(lighten($themeColor, 30%), 20%);
+$themeColor40: desaturate(lighten($themeColor, 40%), 30%);
+$themeColor60: desaturate(lighten($themeColor, 60%), 60%);
+$themeColor80: desaturate(lighten($themeColor, 80%), 80%);
+
+$accentColor: #80a;
+
+$textColor: #eee;
+$borderColor: $themeColor40;
