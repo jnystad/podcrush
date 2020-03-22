@@ -1,0 +1,31 @@
+@import "../colors.scss";
+@import "../components/Track.scss";
+
+.front-page {
+  .subscriptions {
+    h2,
+    p {
+      margin: 10px 20px;
+    }
+  }
+
+  .recent-tracks {
+    h2,
+    p {
+      margin: 10px 20px;
+    }
+    .track {
+      @include track();
+      min-height: 100px;
+
+      .track-info {
+        img {
+          float: left;
+          width: 80px;
+          margin-right: 20px;
+          border-radius: 10%;
+        }
+      }
+    }
+  }
+}

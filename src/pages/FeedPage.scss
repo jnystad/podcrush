@@ -1,0 +1,41 @@
+@import "../colors.scss";
+@import "../components/Track.scss";
+
+.feed-page {
+  display: flex;
+  align-items: stretch;
+
+  .info {
+    position: relative;
+    background: $themeColor10;
+    flex: 1 0 600px;
+    padding: 20px;
+
+    .subscribe {
+      width: 160px;
+      float: right;
+      margin: 20px 0;
+    }
+
+    .artwork {
+      text-align: center;
+    }
+
+    img {
+      width: 300px;
+      border-radius: 10%;
+    }
+  }
+
+  .tracks {
+    .track {
+      @include track();
+    }
+  }
+
+  .error {
+    text-align: center;
+    padding: 20px;
+    color: #f00;
+  }
+}

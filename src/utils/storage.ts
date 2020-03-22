@@ -1,16 +1,5 @@
 import { ITrack, IProgress, IFeed } from "../types";
 
-export function getFeed(id: number): IFeed | null {
-  return JSON.parse(localStorage.getItem("podcrush-feed-" + id) || "null");
-}
-
-export function saveFeed(feed: IFeed) {
-  localStorage.setItem(
-    "podcrush-feed-" + feed.collectionId,
-    JSON.stringify(feed)
-  );
-}
-
 export function getTrack(url: string): ITrack | null {
   return JSON.parse(localStorage.getItem("podcrush-track-" + url) || "null");
 }
@@ -95,8 +84,6 @@ export function saveSubscription(feed: IFeed) {
     feed.collectionId,
     ...getSubscriptions().filter(s => s !== feed.collectionId)
   ]);
-
-  saveFeed(feed);
 }
 
 export function removeSubscription(feed: IFeed) {

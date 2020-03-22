@@ -34,35 +34,8 @@
     border-bottom: 1px solid $themeColor;
     box-shadow: 0 10px 10px rgba(0, 0, 20, 0.2);
 
-    .search-result {
-      height: 120px;
-      padding: 10px;
-      cursor: pointer;
+    .feed {
       background: $themeColor10;
-
-      &:hover {
-        background: lighten($themeColor10, 5%);
-        filter: brightness(110%);
-      }
-
-      img {
-        display: block;
-        float: left;
-        width: 100px;
-        height: 100px;
-        margin-right: 10px;
-        border-radius: 15px;
-      }
-
-      h3 {
-        margin: 5px 0;
-        font-size: 16px;
-      }
-
-      span {
-        display: block;
-        font-size: 14px;
-      }
     }
   }
 }

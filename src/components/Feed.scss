@@ -1,41 +1,35 @@
 @import "../colors.scss";
-@import "./Track.scss";
 
 .feed {
-  display: flex;
-  align-items: stretch;
+  display: block;
+  padding: 10px 20px;
+  background: transparentize($color: $themeColor10, $amount: 0.5);
+  height: 120px;
+  cursor: pointer;
 
-  .info {
-    position: relative;
-    background: $themeColor10;
-    flex: 1 0 600px;
-    padding: 20px;
-
-    .subscribe {
-      width: 160px;
-      float: right;
-      margin: 20px 0;
-    }
-
-    .artwork {
-      text-align: center;
-    }
-
-    img {
-      width: 300px;
-      border-radius: 10%;
-    }
+  &:hover {
+    background: lighten($themeColor10, 5%);
+    filter: brightness(110%);
   }
 
-  .tracks {
-    .track {
-      @include track();
-    }
+  img {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 15px;
+  }
+  h3 {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  p {
+    margin: 0;
   }
 
-  .error {
-    text-align: center;
-    padding: 20px;
-    color: #f00;
+  span {
+    display: block;
+    font-size: 14px;
   }
 }
