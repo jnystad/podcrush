@@ -8,6 +8,7 @@ module.exports = (req: NowRequest, res: NowResponse) => {
       const feed = JSON.parse(r.text);
       request
         .get(feed.results[0].feedUrl)
+        .buffer()
         .then(r => {
           res.removeHeader("Cache-Control");
           res.setHeader("Cache-Control", "public, max-age=86400");

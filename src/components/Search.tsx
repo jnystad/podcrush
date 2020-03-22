@@ -41,14 +41,22 @@ const Search: React.FC<{ onSelect: (feed: IFeed) => void }> = ({
     }
 
     setLoading(true);
-    request
-      .get("/api/search?term=" + encodeURIComponent(bufferedQuery))
+    const req = request.get(
+      "/api/search?term=" + encodeURIComponent(bufferedQuery)
+    );
+
+    req
       .then(res => JSON.parse(res.text))
       .then((res: ISearchResponse) => {
         setResults(res.results);
         setLoading(false);
       })
-      .catch((err: Error) => console.error(err));
+      .catch(err => {
+        if (err.code && err.code === "ABORTED") return;
+        console.error(err);
+      });
+
+    return () => req.abort();
   }, [bufferedQuery, entryCounter]);
 
   useEffect(() => {

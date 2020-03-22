@@ -92,8 +92,12 @@ const Feed: React.FC<{ feed: IFeed }> = ({ feed }) => {
     setError(false);
     setMeta({});
     setTracks([]);
-    request
-      .get("/api/feed?id=" + encodeURIComponent(feed.collectionId))
+
+    const req = request.get(
+      "/api/feed?id=" + encodeURIComponent(feed.collectionId)
+    );
+
+    req
       .then(res => new DOMParser().parseFromString(res.text, "text/xml"))
       .then(res => {
         const items: Element[] = Array.prototype.slice.call(
@@ -107,10 +111,13 @@ const Feed: React.FC<{ feed: IFeed }> = ({ feed }) => {
         setLoading(false);
       })
       .catch(err => {
+        if (err.code && err.code === "ABORTED") return;
         console.error(err);
         setLoading(false);
         setError(true);
       });
+
+    return () => req.abort();
   }, [feed]);
 
   return (
