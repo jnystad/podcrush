@@ -101,7 +101,6 @@
     & > * {
       overflow: auto;
       @media (min-width: 960px) {
-        padding-bottom: 120px !important;
         height: 100%;
       }
       transition: none;
@@ -109,13 +108,23 @@
 
     .left {
       flex: 1 1 400px;
+      min-width: 40vw;
       background: transparentize($themeColor5, 0.5);
+
+      @media (min-width: 960px) {
+        & > :last-child {
+          margin-bottom: 120px;
+        }
+      }
     }
 
     .right {
       flex: 2 1 560px;
       background: transparentize($themeColor10, 0.5);
-      padding-bottom: 120px;
+
+      & > :last-child {
+        margin-bottom: 120px;
+      }
     }
   }
 }
