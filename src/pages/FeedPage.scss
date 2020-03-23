@@ -12,9 +12,21 @@
     padding: 20px;
 
     .subscribe {
+      display: block;
       width: 160px;
       float: right;
-      margin: 20px 0;
+      margin: 20px 0 5px 10px;
+
+      @media (max-width: 500px) {
+        float: none;
+        margin: 20px auto;
+      }
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        text-align: center;
+      }
     }
 
     .artwork {
@@ -30,6 +42,10 @@
   .tracks {
     .track {
       @include track();
+
+      .track-info {
+        padding-left: 20px;
+      }
     }
   }
 

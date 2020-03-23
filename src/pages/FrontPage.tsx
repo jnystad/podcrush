@@ -48,7 +48,7 @@ const FrontPage: FC = () => {
         <FeaturedList />
       </div>
       <div className="recent-tracks right">
-        <h2>Recent</h2>
+        <h2>Recently listened</h2>
         {recentTracks.length ? (
           recentTracks
             .map(url => getTrack(url))

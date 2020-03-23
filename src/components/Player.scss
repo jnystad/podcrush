@@ -22,7 +22,7 @@
 
   .controls {
     position: absolute;
-    right: 10%;
+    right: 5vw;
     top: 20px;
 
     button {
@@ -51,13 +51,24 @@
     @include play-button;
   }
 
+  h2,
+  h3 {
+    display: block;
+    margin: 0 auto;
+    max-width: calc(95vw - 220px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   h2 {
     font-size: 14px;
-    margin: 0 0 2px;
+    margin-bottom: 2px;
+    text-align: center;
   }
   h3 {
     font-size: 12px;
-    margin: 0 0 8px;
+    margin-bottom: 8px;
     color: $themeColor80;
   }
 
@@ -77,7 +88,7 @@
   .progress {
     display: block;
     height: 10px;
-    width: 80%;
+    width: calc(100vw - 200px);
     margin: 1px auto 0;
     padding: 4px 0 3px;
 
