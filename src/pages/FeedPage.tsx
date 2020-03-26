@@ -36,7 +36,7 @@ const FeedTrack: React.FC<{ track: ITrack }> = ({ track }) => (
     <h3>{track.title}</h3>
     <p
       className="description"
-      dangerouslySetInnerHTML={{ __html: track.description }}
+      dangerouslySetInnerHTML={{ __html: track.summary || track.description }}
     />
     {track.duration && (
       <span className="duration">Duration: {track.duration} </span>

@@ -39,10 +39,6 @@
       display: block;
       margin: 0 10px;
       line-height: normal;
-
-      @media (min-width: 601px) {
-        margin: 0 20px;
-      }
     }
 
     .logo {
@@ -51,6 +47,7 @@
       padding-bottom: 5px;
 
       svg {
+        margin-left: 5px;
         margin-right: 10px;
 
         @media (max-width: 600px) {
@@ -68,6 +65,16 @@
         @media (max-width: 600px) {
           display: none;
         }
+      }
+    }
+
+    a.icon {
+      display: inline-block;
+      padding: 10px;
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.2;
       }
     }
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import request from "superagent";
 import sanitizeHtml from "sanitize-html";
 import { ITrack, IFeed } from "../types";
+import { formatTimestamp } from "../components/Player";
 
 function tagValue(item: Element | Document, tag: string): string {
   try {
@@ -26,22 +27,30 @@ function attrValue(
   }
 }
 
+function duration(d: string) {
+  if (/^\d+$/.test(d)) {
+    return formatTimestamp(parseInt(d));
+  }
+  return d;
+}
+
 function toTrack(item: Element, feed: IFeed): ITrack {
   return {
     feed: feed,
     title: tagValue(item, "title"),
     date: new Date(tagValue(item, "pubDate")),
-    description: tagValue(item, "itunes:subtitle"),
+    description: sanitize(tagValue(item, "itunes:subtitle")),
+    summary: sanitize(tagValue(item, "itunes:summary")),
     link: tagValue(item, "link"),
     image: attrValue(item, "itunes:image", "href"),
     audioUrl: attrValue(item, "enclosure", "url"),
-    duration: tagValue(item, "itunes:duration")
+    duration: duration(tagValue(item, "itunes:duration"))
   };
 }
 
 function sanitize(html: string) {
   return sanitizeHtml(html, {
-    allowedTags: ["b", "i", "em", "strong", "a"],
+    allowedTags: ["b", "i", "em", "strong", "a", "p"],
     allowedAttributes: {
       a: ["href"]
     }

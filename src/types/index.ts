@@ -21,6 +21,7 @@ export interface ITrack {
   title: string;
   date: Date;
   description: string;
+  summary: string;
   image: string;
   duration: string;
   audioUrl: string;

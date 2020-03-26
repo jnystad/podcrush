@@ -41,7 +41,7 @@ const Progress: React.FC<{
   );
 };
 
-function formatTimestamp(v: number): string {
+export function formatTimestamp(v: number): string {
   const h = Math.floor(v / 60 / 60);
   const m = Math.floor((v % 3600) / 60);
   const s = v % 60;
