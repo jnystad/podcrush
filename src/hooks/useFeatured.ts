@@ -9,6 +9,7 @@ export default function useFeatured() {
     useFeed(1200361736).feed,
     useFeed(1112190608).feed,
     useFeed(1350257200).feed,
+    useFeed(328074695).feed,
     useFeed(1382999024).feed,
     useFeed(1044196249).feed,
     useFeed(1212558767).feed
