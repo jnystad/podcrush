@@ -6,8 +6,8 @@ const FeaturedList: FC = () => {
   const { featured } = useFeatured();
   return (
     <div className="featured-list">
-      {featured.map(feed => (
-        <Feed feed={feed} />
+      {featured.map((feed) => (
+        <Feed key={feed.collectionId} feed={feed} />
       ))}
     </div>
   );

@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
   Link,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 import Search from "./components/Search";
 import Player from "./components/Player";
@@ -14,12 +14,13 @@ import FrontPage from "./pages/FrontPage";
 import Waves from "./components/Waves";
 import MadeBy from "./components/MadeBy";
 import "./App.scss";
+import Ackee from "./components/Ackee";
 
 function Circle({
   r,
   w = 1,
   rotate = 0,
-  color
+  color,
 }: {
   r: number;
   w?: number;
@@ -79,6 +80,7 @@ const Nav: FC = () => {
 const App: FC = () => {
   return (
     <BrowserRouter>
+      <Ackee />
       <Waves />
       <div className="App">
         <Player>
