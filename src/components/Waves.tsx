@@ -13,7 +13,7 @@ const Wave: React.FC = () => {
       rand(0, 100),
       rand(0, 100),
       rand(0, 100),
-      rand(0, 100)
+      rand(0, 100),
     ],
     []
   );
@@ -27,7 +27,7 @@ const Wave: React.FC = () => {
   );
   const [points, setPoints] = useState([50, 50, 50, 50, 50]);
 
-  const path = () => {
+  const path = useMemo(() => {
     let d = "M -30," + points[0] + " S ";
     const l = points.length;
     const dx = 160 / (l - 1);
@@ -37,25 +37,29 @@ const Wave: React.FC = () => {
 
     d += "130," + points[l - 1];
     return d;
-  };
+  }, [points]);
 
   useEffect(() => {
-    requestAnimationFrame(() => {
-      const t = new Date().getTime() / 10000;
+    const f = () => {
+      const t = new Date().getTime() / 100000;
       let o: number[] = [];
       const l = phase.length;
       for (var i = 0; i < l; ++i) {
         o[i] = offset + Math.sin(t * speed[i] + phase[i]) * scale[1];
       }
       setPoints(o);
-    });
-  });
 
-  const d = path();
+      setTimeout(() => {
+        requestAnimationFrame(f);
+      }, 200);
+    };
+    requestAnimationFrame(f);
+  }, [offset, phase, scale, speed]);
+
   const p = (offset: number, opacity: number) => (
     <g transform={`translate(0, ${offset})`}>
       <path
-        d={d}
+        d={path}
         stroke="currentColor"
         strokeWidth={1}
         strokeOpacity={opacity}
