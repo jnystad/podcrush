@@ -1,38 +1,35 @@
 import { useState, useEffect } from "react";
-import { IFeed } from "../types";
 import request from "superagent";
+
+interface IListenPodcast {
+  itunes_id: number;
+}
 
 interface ISearchResponse {
   resultCount: number;
-  results: IFeed[];
+  podcasts: IListenPodcast[];
 }
 
-const cache: { [id: number]: IFeed } = {};
+const cache: { [region: string]: IListenPodcast[] } = {};
 
-export default function useFeed(id: number) {
-  const [feed, setFeed] = useState<IFeed | null>(null);
+export default function useBest(region: string = "us") {
+  const [results, setResults] = useState<IListenPodcast[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!id) {
-      setFeed(null);
-      return;
-    }
-
-    if (id in cache) {
-      setFeed(cache[id]);
+    if (region in cache) {
+      setResults(cache[region]);
       return;
     }
 
     setLoading(true);
-    const req = request.get("/api/lookup?id=" + encodeURIComponent(id));
+    const req = request.get(`/api/best?region=${region}`);
 
     req
       .then((res) => res.body)
       .then((res: ISearchResponse) => {
-        const f = res.results[0];
-        cache[id] = f;
-        setFeed(f);
+        cache[region] = res.podcasts;
+        setResults(res.podcasts);
         setLoading(false);
       })
       .catch((err) => {
@@ -41,7 +38,7 @@ export default function useFeed(id: number) {
       });
 
     return () => req.abort();
-  }, [id]);
+  }, [region]);
 
-  return { feed, isLoading };
+  return { best: results, isLoading };
 }

@@ -1,0 +1,48 @@
+@import "../colors.scss";
+
+.region-selector {
+  display: inline-block;
+  position: relative;
+
+  .value {
+    color: $blueColor3;
+    display: inline-block;
+    &:after {
+      display: inline-block;
+      content: "▼";
+      font-size: 60%;
+      line-height: 34px;
+      vertical-align: top;
+      margin-left: 10px;
+    }
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:hover {
+      background: #fff1;
+    }
+  }
+
+  .values {
+    list-style: none;
+    position: absolute;
+    width: 300px;
+    z-index: 100;
+    background: $themeColor5;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px transparentize($themeColor, 0.5);
+
+    li {
+      padding: 10px 20px;
+      cursor: pointer;
+      &:hover {
+        background: $themeColor10;
+      }
+
+      font-weight: normal;
+    }
+  }
+}

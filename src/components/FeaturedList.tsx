@@ -1,14 +1,17 @@
 import React, { FC } from "react";
-import Feed from "./Feed";
-import useFeatured from "../hooks/useFeatured";
+import { FeedLoader } from "./Feed";
+import useBest from "../hooks/useBest";
 
-const FeaturedList: FC = () => {
-  const { featured } = useFeatured();
+const FeaturedList: FC<{ region: string }> = ({ region }) => {
+  const { best } = useBest(region);
   return (
     <div className="featured-list">
-      {featured.map((feed) => (
-        <Feed key={feed.collectionId} feed={feed} />
-      ))}
+      {best
+        .filter((feed) => !!feed.itunes_id)
+        .slice(0, 16)
+        .map((feed) => (
+          <FeedLoader key={feed.itunes_id} id={feed.itunes_id} />
+        ))}
     </div>
   );
 };
