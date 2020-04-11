@@ -4,7 +4,8 @@ import request from "superagent";
 module.exports = (req: NowRequest, res: NowResponse) => {
   request
     .get(
-      "https://listen-api.listennotes.com/api/v2/best_podcasts?page=1&region=us&safe_mode=0"
+      "https://listen-api.listennotes.com/api/v2/best_podcasts?page=1&safe_mode=0&region=" +
+        (req.query.region || "us")
     )
     .set("X-ListenAPI-Key", process.env.X_LISTENAPI_KEY)
     .then((r) => {
