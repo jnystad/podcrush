@@ -94,7 +94,6 @@ const App: FC = () => {
             </Route>
             <Redirect to="/" />
           </Switch>
-          >
         </Player>
       </div>
     </BrowserRouter>

@@ -21,12 +21,12 @@ export default function useFeed(id: number) {
     const req = request.get("/api/lookup?id=" + encodeURIComponent(id));
 
     req
-      .then(res => res.body)
+      .then((res) => res.body)
       .then((res: ISearchResponse) => {
         setFeed(res.results[0]);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.code && err.code === "ABORTED") return;
         console.error(err);
       });

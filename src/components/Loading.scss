@@ -2,6 +2,9 @@
   from {
     transform: rotate(0deg);
   }
+  70% {
+    transform: rotate(180deg);
+  }
   to {
     transform: rotate(360deg);
   }
@@ -9,8 +12,9 @@
 
 .loading-mask {
   position: relative;
-  flex: 100;
-  background: rgba(0, 0, 10, 0.4);
+  flex: 100 1 100px;
+  background: rgba(0, 6, 10, 0.3);
+  min-height: 150px;
 
   .loading {
     position: absolute;
@@ -38,26 +42,30 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border: 4px solid rgba(255, 255, 255, 0.5);
-      border-color: rgba(255, 255, 255, 0.5) transparent;
+      border: 4px solid rgba(0, 64, 96, 0.7);
+      border-right-color: transparent;
       border-radius: 50%;
 
-      animation: loading-spin ease 1.6s infinite;
+      animation: loading-spin linear 1.6s infinite;
     }
 
     span:nth-child(2) {
-      top: 5%;
-      left: 5%;
-      width: 90%;
-      height: 90%;
+      top: 15%;
+      left: 15%;
+      width: 70%;
+      height: 70%;
+      border-color: rgba(130, 200, 255, 0.5) rgba(130, 200, 255, 0.5)
+        transparent transparent;
       animation-delay: 400ms;
       animation-duration: 1200ms;
     }
     span:nth-child(3) {
-      top: 10%;
-      left: 10%;
-      width: 80%;
-      height: 80%;
+      top: 7.5%;
+      left: 7.5%;
+      width: 85%;
+      height: 85%;
+      border-color: rgba(0, 114, 130, 0.8) transparent transparent
+        rgba(0, 114, 130, 0.8);
       animation-delay: 800ms;
       animation-duration: 800ms;
     }

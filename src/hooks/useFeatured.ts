@@ -4,6 +4,7 @@ import { IFeed } from "../types";
 
 export default function useFeatured() {
   const all = [
+    useFeed(941907967).feed,
     useFeed(1503412182).feed,
     useFeed(1500919715).feed,
     useFeed(1200361736).feed,
@@ -11,18 +12,17 @@ export default function useFeatured() {
     useFeed(1350257200).feed,
     useFeed(328074695).feed,
     useFeed(1382999024).feed,
-    useFeed(1044196249).feed,
-    useFeed(1212558767).feed
+    useFeed(1212558767).feed,
   ];
 
   const featured: IFeed[] = useMemo(
-    () => all.filter(feed => feed != null) as IFeed[],
+    () => all.filter((feed) => feed != null) as IFeed[],
     [all]
   );
 
   const isLoading = useMemo(() => all.length !== featured.length, [
     all,
-    featured
+    featured,
   ]);
 
   return { featured, isLoading };

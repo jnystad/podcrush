@@ -44,7 +44,7 @@ function toTrack(item: Element, feed: IFeed): ITrack {
     link: tagValue(item, "link"),
     image: attrValue(item, "itunes:image", "href"),
     audioUrl: attrValue(item, "enclosure", "url"),
-    duration: duration(tagValue(item, "itunes:duration"))
+    duration: duration(tagValue(item, "itunes:duration")),
   };
 }
 
@@ -52,8 +52,8 @@ function sanitize(html: string) {
   return sanitizeHtml(html, {
     allowedTags: ["b", "i", "em", "strong", "a", "p"],
     allowedAttributes: {
-      a: ["href"]
-    }
+      a: ["href"],
+    },
   });
 }
 
@@ -76,19 +76,19 @@ export default function useFeedDetails(feed: IFeed | null) {
     );
 
     req
-      .then(res => new DOMParser().parseFromString(res.text, "text/xml"))
-      .then(res => {
+      .then((res) => new DOMParser().parseFromString(res.text, "text/xml"))
+      .then((res) => {
         const items: Element[] = Array.prototype.slice.call(
           res.getElementsByTagName("item")
         );
-        setTracks(items.map(item => toTrack(item, feed)));
+        setTracks(items.map((item) => toTrack(item, feed)));
         setMeta({
           summary: sanitize(tagValue(res, "itunes:summary")),
-          link: tagValue(res, "link")
+          link: tagValue(res, "link"),
         });
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.code && err.code === "ABORTED") return;
         console.error(err);
         setLoading(false);

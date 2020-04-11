@@ -6,7 +6,7 @@ import Track from "../components/Track";
 import {
   checkSubscription,
   removeSubscription,
-  saveSubscription
+  saveSubscription,
 } from "../utils/storage";
 import useFeed from "../hooks/useFeed";
 import useFeedDetails from "../hooks/useFeedDetails";
@@ -16,14 +16,14 @@ const Subscribe: React.FC<{ feed: IFeed }> = ({ feed }) => {
   const [nonce, setNonce] = useState(1);
   const isSubscribed = useMemo(() => nonce && checkSubscription(feed), [
     feed,
-    nonce
+    nonce,
   ]);
   return (
     <button
       className={"subscribe" + (isSubscribed ? " subscribed" : "")}
       onClick={() => {
         isSubscribed ? removeSubscription(feed) : saveSubscription(feed);
-        setNonce(n => n + 1);
+        setNonce((n) => n + 1);
       }}
     >
       {isSubscribed ? "Unsubscribe" : "Subscribe"}
@@ -77,7 +77,7 @@ const FeedPage: FC = () => {
         <div className="right error">Could not load feed.</div>
       ) : (
         <div className="tracks right">
-          {tracks.slice(0, 20).map(track => (
+          {tracks.slice(0, 20).map((track) => (
             <FeedTrack key={track.audioUrl} track={track} />
           ))}
         </div>
