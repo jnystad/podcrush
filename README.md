@@ -1,4 +1,4 @@
-A Podcast player living in your browser. No accounts, no tracking, no online persistence.
+A Podcast player living in your browser. No accounts, no privacy invading tracking, no online persistence.
 
 [Open PodCrush](https://podcrush.nystad.io/)
 
