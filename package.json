@@ -40,6 +40,6 @@
     ]
   },
   "devDependencies": {
-    "@now/node": "^1.4.1"
+    "@vercel/node": "^1.15.3"
   }
 }

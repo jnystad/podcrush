@@ -1,7 +1,7 @@
-import { NowRequest, NowResponse } from "@now/node";
-import request from "superagent";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+const request = require("superagent");
 
-module.exports = (req: NowRequest, res: NowResponse) => {
+module.exports = (req: VercelRequest, res: VercelResponse) => {
   request
     .get("https://itunes.apple.com/lookup?id=" + req.query.id)
     .then((r) => {

@@ -1,7 +1,7 @@
-import { NowRequest, NowResponse } from "@now/node";
-import request from "superagent";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+const request = require("superagent");
 
-module.exports = (req: NowRequest, res: NowResponse) => {
+module.exports = (req: VercelRequest, res: VercelResponse) => {
   request
     .get(
       "https://listen-api.listennotes.com/api/v2/best_podcasts?page=1&safe_mode=0&region=" +
