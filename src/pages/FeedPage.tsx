@@ -77,7 +77,7 @@ const FeedPage: FC = () => {
         <div className="right error">Could not load feed.</div>
       ) : (
         <div className="tracks right">
-          {tracks.slice(0, 20).map((track) => (
+          {tracks.slice(0, 50).map((track) => (
             <FeedTrack key={track.audioUrl} track={track} />
           ))}
         </div>

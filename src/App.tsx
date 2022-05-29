@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import {
   BrowserRouter,
-  Switch,
   Route,
-  Redirect,
   Link,
   useLocation,
+  Routes,
+  Navigate,
 } from "react-router-dom";
 import Search from "./components/Search";
 import Player from "./components/Player";
@@ -14,7 +14,6 @@ import FrontPage from "./pages/FrontPage";
 import Waves from "./components/Waves";
 import MadeBy from "./components/MadeBy";
 import "./App.scss";
-import Ackee from "./components/Ackee";
 
 function Circle({
   r,
@@ -80,20 +79,15 @@ const Nav: FC = () => {
 const App: FC = () => {
   return (
     <BrowserRouter>
-      <Ackee />
       <Waves />
       <div className="App">
         <Player>
           <Nav />
-          <Switch>
-            <Route exact path="/podcast/:id">
-              <FeedPage />
-            </Route>
-            <Route exact path="/">
-              <FrontPage />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
+          <Routes>
+            <Route path="/podcast/:id" element={<FeedPage />} />
+            <Route path="/" element={<FrontPage />} />
+            <Route element={<Navigate to="/" />} />
+          </Routes>
         </Player>
       </div>
     </BrowserRouter>

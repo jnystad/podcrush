@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/src/assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0e12" />
+    <meta
+      name="description"
+      content="The no fuss podcast player: Purely online, lives in your browser, needs no account. Just listen!"
+    />
+    <meta
+      property="og:image"
+      content="https://podcrush.nystad.io/ogimage.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta property="og:image:alt" content="PodCrush logo" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>PodCrush</title>
+    <script>
+      window.global = window;
+    </script>
+    <style type="text/css">
+      body {
+        background: #000;
+        color: #ccc;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <h1>PodCrush</h1>
+      <p>
+        PodCrush is an online podcast player that requires no account or sign
+        up. Just listen to your favorite podcasts directly in your browser.
+      </p>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    <img
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://ma.nystad.io/js/?idsite=5&amp;rec=1"
+      style="border: 0"
+      alt=""
+    />
+  </body>
+</html>
