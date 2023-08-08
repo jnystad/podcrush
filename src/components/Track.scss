@@ -40,6 +40,10 @@
       position: absolute;
       left: 20px;
     }
+
+    p.description {
+      white-space: pre-wrap;
+    }
   }
 
   h3 {
