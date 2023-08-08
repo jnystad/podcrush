@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-const request = require("superagent");
+import request from "superagent";
 
 module.exports = (req: VercelRequest, res: VercelResponse) => {
   request
