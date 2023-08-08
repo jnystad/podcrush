@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import request from "superagent";
 
-module.exports = (req: VercelRequest, res: VercelResponse) => {
+export default function handler(req: VercelRequest, res: VercelResponse) {
   request
     .get(
       "https://listen-api.listennotes.com/api/v2/best_podcasts?page=1&safe_mode=0&region=" + (req.query.region || "us")
@@ -14,4 +14,4 @@ module.exports = (req: VercelRequest, res: VercelResponse) => {
       res.send(r.text);
     })
     .catch(() => res.status(500));
-};
+}

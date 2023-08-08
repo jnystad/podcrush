@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import request from "superagent";
 
-module.exports = (req: VercelRequest, res: VercelResponse) => {
+export default function handler(req: VercelRequest, res: VercelResponse) {
   request
     .get("https://itunes.apple.com/lookup?id=" + req.query.id)
     .then((r) => {
@@ -11,4 +11,4 @@ module.exports = (req: VercelRequest, res: VercelResponse) => {
       res.send(r.text);
     })
     .catch(() => res.status(500));
-};
+}
