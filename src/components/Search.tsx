@@ -1,10 +1,10 @@
-import React, { useState, useEffect, FC } from "react";
+import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import useSearch from "../hooks/useSearch";
 import Feed from "./Feed";
 import "./Search.scss";
 
-const Search: FC = () => {
+function Search() {
   const [query, setQuery] = useState("");
   const { results, isLoading, load, reset } = useSearch(query);
 
@@ -20,7 +20,7 @@ const Search: FC = () => {
     <div className="search">
       <div className="search-field">
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             load();
           }}
@@ -28,7 +28,7 @@ const Search: FC = () => {
           <input
             type="text"
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
             onFocus={() => load()}
             placeholder="Search"
           />
@@ -37,13 +37,13 @@ const Search: FC = () => {
       </div>
       {!!results.length && (
         <div className="search-results">
-          {results.slice(0, 10).map(feed => (
+          {results.slice(0, 10).map((feed) => (
             <Feed key={feed.feedUrl} feed={feed} onClick={reset} />
           ))}
         </div>
       )}
     </div>
   );
-};
+}
 
 export default Search;

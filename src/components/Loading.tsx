@@ -1,7 +1,6 @@
-import React from "react";
 import "./Loading.scss";
 
-const Loading: React.FC<{ small?: boolean }> = ({ small }) => (
+const Loading = ({ small }: { small?: boolean }) => (
   <div className="loading-mask">
     <div className={"loading" + (small ? " small" : "")}>
       <span />

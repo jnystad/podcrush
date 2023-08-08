@@ -1,23 +1,16 @@
-import React, { useState, useMemo, FC } from "react";
+import { useState, useMemo } from "react";
 import { useParams } from "react-router";
 import { IFeed, ITrack } from "../types";
 import Loading from "../components/Loading";
 import Track from "../components/Track";
-import {
-  checkSubscription,
-  removeSubscription,
-  saveSubscription,
-} from "../utils/storage";
+import { checkSubscription, removeSubscription, saveSubscription } from "../utils/storage";
 import useFeed from "../hooks/useFeed";
 import useFeedDetails from "../hooks/useFeedDetails";
 import "./FeedPage.scss";
 
-const Subscribe: React.FC<{ feed: IFeed }> = ({ feed }) => {
+function Subscribe({ feed }: { feed: IFeed }) {
   const [nonce, setNonce] = useState(1);
-  const isSubscribed = useMemo(() => nonce && checkSubscription(feed), [
-    feed,
-    nonce,
-  ]);
+  const isSubscribed = useMemo(() => nonce && checkSubscription(feed), [feed, nonce]);
   return (
     <button
       className={"subscribe" + (isSubscribed ? " subscribed" : "")}
@@ -29,25 +22,20 @@ const Subscribe: React.FC<{ feed: IFeed }> = ({ feed }) => {
       {isSubscribed ? "Unsubscribe" : "Subscribe"}
     </button>
   );
-};
+}
 
-const FeedTrack: React.FC<{ track: ITrack }> = ({ track }) => (
-  <Track track={track}>
-    <h3>{track.title}</h3>
-    <p
-      className="description"
-      dangerouslySetInnerHTML={{ __html: track.summary || track.description }}
-    />
-    {track.duration && (
-      <span className="duration">Duration: {track.duration} </span>
-    )}
-    {track.date && (
-      <span className="date">Released: {track.date.toDateString()} </span>
-    )}
-  </Track>
-);
+function FeedTrack({ track }: { track: ITrack }) {
+  return (
+    <Track track={track}>
+      <h3>{track.title}</h3>
+      <p className="description" dangerouslySetInnerHTML={{ __html: track.summary || track.description }} />
+      {track.duration && <span className="duration">Duration: {track.duration} </span>}
+      {track.date && <span className="date">Released: {track.date.toDateString()} </span>}
+    </Track>
+  );
+}
 
-const FeedPage: FC = () => {
+function FeedPage() {
   const { id } = useParams();
   const { feed } = useFeed(parseInt(id || "0"));
   const { meta, tracks, isLoading, isError } = useFeedDetails(feed);
@@ -66,10 +54,7 @@ const FeedPage: FC = () => {
             {feed.collectionName}
           </a>
         </h1>
-        <p
-          className="summary"
-          dangerouslySetInnerHTML={{ __html: meta.summary }}
-        />
+        <p className="summary" dangerouslySetInnerHTML={{ __html: meta.summary ?? "" }} />
       </div>
       {isLoading ? (
         <Loading />
@@ -84,6 +69,6 @@ const FeedPage: FC = () => {
       )}
     </div>
   );
-};
+}
 
 export default FeedPage;

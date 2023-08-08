@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { useState } from "react";
 import "./RegionSelector.scss";
 
 const regions: { [region: string]: string } = {
@@ -10,10 +10,7 @@ const regions: { [region: string]: string } = {
   se: "Sweden",
 };
 
-const RegionSelector: FC<{
-  value: string;
-  onChange: (value: string) => void;
-}> = ({ value, onChange }) => {
+function RegionSelector({ value, onChange }: { value: string; onChange: (value: string) => void }) {
   const [show, setShow] = useState(false);
 
   return (
@@ -38,6 +35,6 @@ const RegionSelector: FC<{
       )}
     </div>
   );
-};
+}
 
 export default RegionSelector;

@@ -1,8 +1,7 @@
-import React, { FC } from "react";
 import { FeedLoader } from "./Feed";
 import useBest from "../hooks/useBest";
 
-const FeaturedList: FC<{ region: string }> = ({ region }) => {
+function FeaturedList({ region }: { region: string }) {
   const { best } = useBest(region);
   return (
     <div className="featured-list">
@@ -14,6 +13,6 @@ const FeaturedList: FC<{ region: string }> = ({ region }) => {
         ))}
     </div>
   );
-};
+}
 
 export default FeaturedList;

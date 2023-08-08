@@ -1,12 +1,4 @@
-import React, { FC } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Link,
-  useLocation,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Route, Link, useLocation, Routes, Navigate } from "react-router-dom";
 import Search from "./components/Search";
 import Player from "./components/Player";
 import FeedPage from "./pages/FeedPage";
@@ -15,25 +7,10 @@ import Waves from "./components/Waves";
 import MadeBy from "./components/MadeBy";
 import "./App.scss";
 
-function Circle({
-  r,
-  w = 1,
-  rotate = 0,
-  color,
-}: {
-  r: number;
-  w?: number;
-  rotate?: number;
-  color: string;
-}) {
+function Circle({ r, w = 1, rotate = 0, color }: { r: number; w?: number; rotate?: number; color: string }) {
   return (
     <g transform={`rotate(${rotate + 180} 10 10)`}>
-      <path
-        d={`M 10,10 m -${r},0 A ${r} ${r} 0 1 1 10 ${10 + r}`}
-        stroke={color}
-        fill="none"
-        strokeWidth={w}
-      />
+      <path d={`M 10,10 m -${r},0 A ${r} ${r} 0 1 1 10 ${10 + r}`} stroke={color} fill="none" strokeWidth={w} />
     </g>
   );
 }
@@ -54,17 +31,13 @@ function Logo() {
   );
 }
 
-const Nav: FC = () => {
+function Nav() {
   const { pathname } = useLocation();
 
   return (
     <nav className="nav-bar">
       <Logo />
-      <Link
-        to="/"
-        className={"icon" + (pathname === "/" ? " disabled" : "")}
-        title="Go to front page"
-      >
+      <Link to="/" className={"icon" + (pathname === "/" ? " disabled" : "")} title="Go to front page">
         <svg width={16} height={16} viewBox="0 0 16 16">
           <polygon points="2,8 12,0 14,2 6,8 14,14 12,16" fill="currentColor" />
         </svg>
@@ -74,9 +47,9 @@ const Nav: FC = () => {
       <MadeBy />
     </nav>
   );
-};
+}
 
-const App: FC = () => {
+function App() {
   return (
     <BrowserRouter>
       <Waves />
@@ -92,6 +65,6 @@ const App: FC = () => {
       </div>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

@@ -1,37 +1,22 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import "./Waves.scss";
 
 function rand(y: number, dy: number): number {
   return y + (Math.random() * 2 - 1) * dy;
 }
 
-const Wave: React.FC = () => {
+function Wave() {
   const offset = useMemo(() => rand(90, 5), []);
-  const phase = useMemo(
-    () => [
-      rand(0, 100),
-      rand(0, 100),
-      rand(0, 100),
-      rand(0, 100),
-      rand(0, 100),
-    ],
-    []
-  );
-  const speed = useMemo(
-    () => [rand(0, 1), rand(0, 1), rand(0, 1), rand(0, 1), rand(0, 1)],
-    []
-  );
-  const scale = useMemo(
-    () => [rand(0, 5), rand(0, 10), rand(0, 5), rand(0, 10), rand(0, 5)],
-    []
-  );
+  const phase = useMemo(() => [rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100), rand(0, 100)], []);
+  const speed = useMemo(() => [rand(0, 1), rand(0, 1), rand(0, 1), rand(0, 1), rand(0, 1)], []);
+  const scale = useMemo(() => [rand(0, 5), rand(0, 10), rand(0, 5), rand(0, 10), rand(0, 5)], []);
   const [points, setPoints] = useState([50, 50, 50, 50, 50]);
 
   const path = useMemo(() => {
     let d = "M -30," + points[0] + " S ";
     const l = points.length;
     const dx = 160 / (l - 1);
-    for (var i = 0; i < l; ++i) {
+    for (let i = 0; i < l; ++i) {
       d += dx * i - 30 + "," + points[i] + " ";
     }
 
@@ -42,9 +27,9 @@ const Wave: React.FC = () => {
   useEffect(() => {
     const f = () => {
       const t = new Date().getTime() / 100000;
-      let o: number[] = [];
+      const o: number[] = [];
       const l = phase.length;
-      for (var i = 0; i < l; ++i) {
+      for (let i = 0; i < l; ++i) {
         o[i] = offset + Math.sin(t * speed[i] + phase[i]) * scale[1];
       }
       setPoints(o);
@@ -58,13 +43,7 @@ const Wave: React.FC = () => {
 
   const p = (offset: number, opacity: number) => (
     <g transform={`translate(0, ${offset})`}>
-      <path
-        d={path}
-        stroke="currentColor"
-        strokeWidth={1}
-        strokeOpacity={opacity}
-        fill="none"
-      />
+      <path d={path} stroke="currentColor" strokeWidth={1} strokeOpacity={opacity} fill="none" />
     </g>
   );
 
@@ -78,9 +57,9 @@ const Wave: React.FC = () => {
       {p(5, 0.03)}
     </svg>
   );
-};
+}
 
-const Waves: React.FC = () => {
+function Waves() {
   return (
     <div className="waves">
       <Wave />
@@ -88,6 +67,6 @@ const Waves: React.FC = () => {
       <Wave />
     </div>
   );
-};
+}
 
 export default Waves;

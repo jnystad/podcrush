@@ -13,11 +13,7 @@ function tagValue(item: Element | Document, tag: string): string {
   }
 }
 
-function attrValue(
-  item: Element | Document,
-  tag: string,
-  attr: string
-): string {
+function attrValue(item: Element | Document, tag: string, attr: string): string {
   try {
     const a = item.getElementsByTagName(tag)[0].attributes.getNamedItem(attr);
     return (a && a.value) || "";
@@ -57,8 +53,13 @@ function sanitize(html: string) {
   });
 }
 
+interface ICollectionMeta {
+  summary?: string;
+  link?: string;
+}
+
 export default function useFeedDetails(feed: IFeed | null) {
-  const [meta, setMeta] = useState<any>({});
+  const [meta, setMeta] = useState<ICollectionMeta>({});
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [tracks, setTracks] = useState<ITrack[]>([]);
@@ -71,16 +72,12 @@ export default function useFeedDetails(feed: IFeed | null) {
     setMeta({});
     setTracks([]);
 
-    const req = request.get(
-      "/api/feed?id=" + encodeURIComponent(feed.collectionId)
-    );
+    const req = request.get("/api/feed?id=" + encodeURIComponent(feed.collectionId));
 
     req
       .then((res) => new DOMParser().parseFromString(res.text, "text/xml"))
       .then((res) => {
-        const items: Element[] = Array.prototype.slice.call(
-          res.getElementsByTagName("item")
-        );
+        const items: Element[] = Array.prototype.slice.call(res.getElementsByTagName("item"));
         setTracks(items.map((item) => toTrack(item, feed)));
         setMeta({
           summary: sanitize(tagValue(res, "itunes:summary")),

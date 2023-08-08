@@ -1,41 +1,33 @@
-import React, { FC, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ITrack, notEmpty } from "../types";
 import { getPlayedTracks, getTrack, getSubscriptions } from "../utils/storage";
 import Track from "../components/Track";
 import { FeedLoader } from "../components/Feed";
 import FeaturedList from "../components/FeaturedList";
 import RegionSelector from "../components/RegionSelector";
-import "./FrontPage.scss";
 import listenapi from "../assets/listenapi.png";
+import "./FrontPage.scss";
 
-const PlayedTrack: React.FC<{ track: ITrack }> = ({ track }) => (
-  <Track track={track}>
-    <img src={track.feed.artworkUrl100} alt={track.feed.collectionName} />
-    <h3>{track.title}</h3>
-    <p
-      className="description"
-      dangerouslySetInnerHTML={{ __html: track.description || track.summary }}
-    />
-    {track.duration && (
-      <span className="duration">Duration: {track.duration} </span>
-    )}
-    {track.date && (
-      <span className="date">
-        Released:{" "}
-        {track.date instanceof Date
-          ? track.date.toDateString()
-          : new Date(track.date).toDateString()}
-      </span>
-    )}
-  </Track>
-);
+function PlayedTrack({ track }: { track: ITrack }) {
+  return (
+    <Track track={track}>
+      <img src={track.feed.artworkUrl100} alt={track.feed.collectionName} />
+      <h3>{track.title}</h3>
+      <p className="description" dangerouslySetInnerHTML={{ __html: track.description || track.summary }} />
+      {track.duration && <span className="duration">Duration: {track.duration} </span>}
+      {track.date && (
+        <span className="date">
+          Released: {track.date instanceof Date ? track.date.toDateString() : new Date(track.date).toDateString()}
+        </span>
+      )}
+    </Track>
+  );
+}
 
-const FrontPage: FC = () => {
+function FrontPage() {
   const recentTracks = getPlayedTracks();
   const subscriptions = getSubscriptions();
-  const [region, setRegion] = useState(
-    () => localStorage.getItem("bestRegion") || "us"
-  );
+  const [region, setRegion] = useState(() => localStorage.getItem("bestRegion") || "us");
 
   useEffect(() => {
     localStorage.setItem("bestRegion", region);
@@ -54,13 +46,11 @@ const FrontPage: FC = () => {
           </>
         )}
         <h2>
-          Popular podcasts in{" "}
-          <RegionSelector value={region} onChange={setRegion} />
+          Popular podcasts in <RegionSelector value={region} onChange={setRegion} />
         </h2>
         <FeaturedList region={region} />
         <p className="powered-by">
-          Popular lists /{" "}
-          <img src={listenapi} width={180} alt="Powered by Listen Notes" />
+          Popular lists / <img src={listenapi} width={180} alt="Powered by Listen Notes" />
         </p>
       </div>
       <div className="recent-tracks right">
@@ -76,6 +66,6 @@ const FrontPage: FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default FrontPage;
